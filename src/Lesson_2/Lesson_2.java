@@ -26,17 +26,17 @@ public class Lesson_2 {
         System.out.println(lessonItem_6(in_array3));
         System.out.println();
         System.out.println("Задание_7");
-        int[] array=new int[]{1,2,3,4,5,6};
+        int[] array = new int[]{1, 2, 3, 4, 5, 6};
         System.out.println("Исходный массив:");
         printArray(array);
-        array= lessonItem_7(2,array);
+        array = lessonItem_7(2, array);
         System.out.println("После смещения на 2");
         printArray(array);
         System.out.println();
-        int[] array2=new int[]{1,2,3,4,5,6};
+        int[] array2 = new int[]{1, 2, 3, 4, 5, 6};
         System.out.println("Исходный массив:");
         printArray(array2);
-        array2= lessonItem_7(-2,array2);
+        array2 = lessonItem_7(-2, array2);
         System.out.println("После смещения на -2");
         printArray(array2);
     }
@@ -161,6 +161,7 @@ public class Lesson_2 {
         }
         return false;
     }
+
     /*
     7. **** Написать метод, которому на вход подается одномерный массив и число n
     (может быть положительным, или отрицательным), при этом метод должен сместить все элементы массива на n позиций.
@@ -168,38 +169,39 @@ public class Lesson_2 {
     Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ]; [ 3, 5, 6, 1] при n = -2 (на два влево) -> [ 6, 1, 3, 5 ].
     При каком n в какую сторону сдвиг можете выбирать сами.
     */
-    public static int[] lessonItem_7( int n,int[] array){
-        if (n>0){
-            for (int i = 0; i <n ; i++) {
+    public static int[] lessonItem_7(int n, int[] array) {
+        if (n > 0) {
+            for (int i = 0; i < n; i++) {
                 int tmp = 0;
-                for (int j = array.length-1; j >=0; j--) {
-                    if(j==array.length-1){
-                        tmp=array[array.length-1];
-                    }else{
-                        array[j+1]=array[j];
+                for (int j = array.length - 1; j >= 0; j--) {
+                    if (j == array.length - 1) {
+                        tmp = array[array.length - 1];
+                    } else {
+                        array[j + 1] = array[j];
                     }
                 }
-                array[0]=tmp;
+                array[0] = tmp;
             }
-        }else{
-            n*=-1;
-            for (int i = 0; i <n ; i++) {
+        } else {
+            n *= -1;
+            for (int i = 0; i < n; i++) {
                 int tmp = 0;
-                for (int j = 0; j <array.length; j++) {
-                    if(j==0){
-                        tmp=array[j];
-                    }else{
-                        array[j-1]=array[j];
+                for (int j = 0; j < array.length; j++) {
+                    if (j == 0) {
+                        tmp = array[j];
+                    } else {
+                        array[j - 1] = array[j];
                     }
                 }
-                array[array.length-1]=tmp;
+                array[array.length - 1] = tmp;
             }
         }
         return array;
     }
-    public static void printArray(int[] array){
+
+    public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i]+"\t");
+            System.out.print(array[i] + "\t");
         }
         System.out.println();
     }
