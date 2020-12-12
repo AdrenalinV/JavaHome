@@ -17,23 +17,29 @@ public class Lesson_3 {
     public static void lessonItem_1() {
         Random rnd = new Random();
         Scanner in = new Scanner(System.in);
-        int riddle = rnd.nextInt(10);
-        int i = 0;
-        for (; i < 3; i++) {
-            System.out.println("Осталось попыток: " + (3 - i));
-            System.out.println("Введите число от 0 до 9:");
-            int answer = in.nextInt();
-            if (answer == riddle) {
-                System.out.println("Ура победа");
-                break;
-            } else if (answer < riddle) {
-                System.out.println("Загаданное число больше");
-            } else {
-                System.out.println("Загаданное число меньше");
+        int play = 1;
+        while (play == 1) {
+            int riddle = rnd.nextInt(10);
+            int i = 0;
+            for (; i < 3; i++) {
+                System.out.println("Осталось попыток: " + (3 - i));
+                System.out.println("Введите число от 0 до 9:");
+                int answer = in.nextInt();
+                if (answer == riddle) {
+                    System.out.println("Ура победа");
+                    break;
+                } else if (answer < riddle) {
+                    System.out.println("Загаданное число больше");
+                } else {
+                    System.out.println("Загаданное число меньше");
+                }
             }
+            if (i == 3) {
+                System.out.println("Вы проиграли!\nЗагаданное число: " + riddle);
+            }
+            System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
+            play=in.nextInt();
         }
-        if (i == 3) {
-            System.out.println("Вы проиграли!\nЗагаданное число: " + riddle);
-        }
+
     }
 }
