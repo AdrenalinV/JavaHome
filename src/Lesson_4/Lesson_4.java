@@ -36,8 +36,8 @@ public class Lesson_4 {
             getPlayerTurn(Field);
             freeItems--;
             printField(Field);
-            if (isWiner(Field, AIPLAY)) {
-                System.out.println("Извините, Вы проиграли!!!");
+            if (isWiner(Field, ONEPLAY)) {
+                System.out.println("Вы выиграли!!!");
                 break;
             }
             if (freeItems == 0) {
@@ -46,8 +46,8 @@ public class Lesson_4 {
             getAiTurn(Field);
             freeItems--;
             printField(Field);
-            if (isWiner(Field, ONEPLAY)) {
-                System.out.println("Вы выиграли!!!");
+            if (isWiner(Field, AIPLAY)) {
+                System.out.println("Извините, Вы проиграли!!!");
                 break;
             }
             if (freeItems == 0) {
@@ -91,12 +91,82 @@ public class Lesson_4 {
 
     // ход компьютера
     public static void getAiTurn(char[][] Field) {
-        Random rnd = new Random();
-        int x, y;
-        do {
-            x = rnd.nextInt(SIZE);
-            y = rnd.nextInt(SIZE);
-        } while (Field[x][y] != NONEPLAY);
+        int x = 0, y = 0;               // рабочие координаты
+        int xDm = 0, yDm = 0;           // координаты свободного поля по главной диагонали
+        int xDs = 0, yDs = 0;           // координаты свободного поля по побочной диагонали
+        int countDm = 0, countDs = 0;   // кол-во симолов игрока га диоганалях
+        int countMax = 0;               // максимальное кол-во симолов игрока
+
+        for (int i = 0; i < SIZE; i++) {
+            int xH = 0, yH = 0;     // координаты свободного поля по горизонтали
+            int xV = 0, yV = 0;     // координаты свободного поля по вертикали
+            int countH = 0, countV = 0;
+            for (int j = 0; j < SIZE; j++) {
+                // проверка горизонтали
+                if (Field[i][j] == ONEPLAY) {
+                    countH++;
+                } else if (Field[i][j] == AIPLAY) {
+                    countH--;
+                } else {
+                    xH = xH == 0 ? i : xH;
+                    yH = yH == 0 ? j : yH;
+                }
+                // проверка по вертикали
+                if (Field[j][i] == ONEPLAY) {
+                    countV++;
+                } else if (Field[j][i] == AIPLAY) {
+                    countV--;
+                } else {
+                    xV = xV == 0 ? j : xV;
+                    yV = yV == 0 ? i : yV;
+                }
+                // проверка главной диагонали
+                if (i == j) {
+                    if (Field[i][j] == ONEPLAY) {
+                        countDm++;
+                    } else if (Field[i][j] == AIPLAY) {
+                        countDm--;
+                    } else {
+                        xDm = xDm == 0 ? i : xDm;
+                        yDm = yDm == 0 ? j : yDm;
+                    }
+                }
+                //проверка побочной диагонали
+                if (j == SIZE - 1 - i) {
+                    if (Field[i][j] == ONEPLAY) {
+                        countDs++;
+                    } else if (Field[i][j] == AIPLAY) {
+                        countDs--;
+                    } else {
+                        xDs = xDs == 0 ? i : xDs;
+                        yDs = yDs == 0 ? j : yDs;
+                    }
+                }
+            }
+            // Если больше по горизонтали/вертикали
+            if ((countH > countV) && countH > countMax) {
+                countMax = countH;
+                x = xH;
+                y = yH;
+            } else if (countV > countMax) {
+                countMax = countV;
+                x = xV;
+                y = yV;
+            }
+        }
+        // если больше по диагонали
+        if ((countDm > countDs) && countDm > countMax) {
+            x = xDm;
+            y = yDm;
+        } else if (countDs > countMax) {
+            x = xDs;
+            y = yDs;
+        }
+//        Random rnd = new Random();
+//        do {
+//            x = rnd.nextInt(SIZE);
+//            y = rnd.nextInt(SIZE);
+//        } while (Field[x][y] != NONEPLAY);
         Field[x][y] = AIPLAY;
     }
 
