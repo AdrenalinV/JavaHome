@@ -22,8 +22,8 @@ public class Lesson_6 {
             pets[i].goRun((100*i));
             pets[i].goSwim((5* i));
         }
-        ((Cat)pets[0]).infoCount();
-        ((Dog)pets[1]).infoCount();
-        pets[0].infoCount();
+        Cat.infoCount();
+        Dog.infoCount();
+        Animals.infoCount();
     }
 }
