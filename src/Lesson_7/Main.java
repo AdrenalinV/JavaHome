@@ -14,10 +14,18 @@ public class Main {
                 тарелки и потом вывести информацию о сытости котов в консоль.
             6. Добавить в тарелку метод, с помощью которого можно было бы добавлять еду в тарелку.
          */
-        Cat cat=new Cat("Sema",5);
-        Plate plate=new Plate(100);
+        Cat[] cat = new Cat[]{new Cat("Barsic", 10),
+                new Cat("Sema", 5),
+                new Cat("Lastic", 10),
+                new Cat("Myrka", 15),
+                new Cat("Mysya", 15),
+        };
+        Plate plate = new Plate(50);
         plate.info();
-        cat.eat(plate);
+        for (int i = 0; i < cat.length; i++) {
+            cat[i].eat(plate);
+            System.out.println(cat[i]);
+        }
         plate.info();
     }
 }

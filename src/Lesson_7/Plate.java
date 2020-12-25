@@ -10,11 +10,15 @@ public class Plate {
         System.out.println("plate: "+ this.food);
     }
 
-    public void decreaseFood(int n){
+    public boolean decreaseFood(int n){
+        if (n>this.food) {
+            return false;
+        }
         this.food-=n;
+        return true;
     }
 
-    public int getFood() {
-        return food;
+    public void setFood(int food) {
+        this.food = food;
     }
 }
