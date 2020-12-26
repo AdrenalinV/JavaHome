@@ -18,7 +18,7 @@ public class Plate {
         return true;
     }
 
-    public void setFood(int food) {
-        this.food = food;
+    public void addFood(int food) {
+        this.food += food;
     }
 }

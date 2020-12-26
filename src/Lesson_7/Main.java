@@ -27,5 +27,8 @@ public class Main {
             System.out.println(cat[i]);
         }
         plate.info();
+        System.out.println("Добавим еды:");
+        plate.addFood(20);
+        plate.info();
     }
 }
